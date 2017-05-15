@@ -5,7 +5,7 @@
  * @returns {Spier} a new instance of a Spier
  */
 export function Spier() {
-
+  this._spies = new Map();
 }
 
 Spier.prototype = {
@@ -18,12 +18,29 @@ Spier.prototype = {
    * @returns {undefined}
    */
   spy(obj, funcName, stub) {
-
+    let originalFunc = obj[funcName];
+    let spyFunc = function () {
+      let result = (stub || originalFunc)(...arguments);
+      spyFunc.invocations.push({args: [...arguments], result });
+      return result;
+    };
+    spyFunc.funcName = funcName;
+    spyFunc.host = obj;
+    spyFunc.invocations = [];
+    Object.defineProperty(spyFunc, 'count', {
+      get() {
+        return spyFunc.invocations.length;
+      }
+    });
+    this._spies.set(spyFunc, originalFunc);
+    obj[funcName] = spyFunc;
   },
   /**
    * Get the number of installed spies
    */
-  get length() {},
+  get length() {
+    return this._spies.size;
+  },
   /**
    * Release a spy
    *
@@ -31,13 +48,16 @@ Spier.prototype = {
    * @return {undefined}
    */
   release(spy) {
-
+    spy.host[spy.funcName] = this._spies.get(spy);
+    this._spies.delete(spy);
   },
   /**
    * Release all spies
    * @return {undefined}
    */
   releaseAll() {
-
+    for (let spy of this._spies.keys()) {
+      this.release(spy);
+    }
   }
 };
