@@ -53,5 +53,68 @@ function (x) {
 };
 ```
 
-Note: Read up on [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), and [super calls](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
+Note: Read up on [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
+### OBJECT LITERAL
+
+- you can specify object prototype AT construction using ```_proto_```
+
+```
+let mike = {
+    _proto_: MyObject.prototype,
+    name: 'Mike',
+    age: 34
+};
+```
+
+- you can use dynamic properties within objects
+- use ```super``` calls in functions/methods within an object
+
+Note: Read up on [super calls](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
+
+- ES2015: destructuring assignment syntax to ''pluck' values or keys from objects / arrays
+
+#### ES2018: ```rest``` & ```spread``` PROPERTIES! 
+
+- rest: sugar for "and the rest go here" in destructuring syntax
+
+```
+Example:
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // [30, 40, 50]
+```
+
+- spread: sugar for "and all the properties on this object" when defining a {}
+
+```
+Example: 
+var parts = ['shoulders', 'knees']; 
+var lyrics = ['head', ...parts, 'and', 'toes']; 
+// ["head", "shoulders", "knees", "and", "toes"]
+```
+
+Note: Read up on [Rest/Spread properties](https://github.com/tc39/proposal-object-rest-spread)
+
+#### GETTER & SETTER
+- ```get``` syntax binds an object property to a function that will be called when that property is looked up. [MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)
+
+- ```set``` syntax binds an object property to a function to be called when there is an attempt to set that property. [MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set)
+
+#### PROPERTY DESCRIPTORS
+
+- ```Object.defineProperty()``` can be used to create or modify properties on objects.
+
+*Accessor descriptor:*
+- get
+- set
+
+*Data descriptor:*
+- value (set default value)
+- writable (boolean value)
+
+*Both accessor * data descriptor*
+- configurable (boolean option)
+- enumerable (boolean option)
