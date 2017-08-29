@@ -36,4 +36,22 @@ favoriteFoods.fruits.push('pear');
 console.log(favoriteFoods.fruits);  // [ 'apple', 'grape', 'pear']
 ```
 
+### FUNCTION DECLARATIONS
+
+- Functions are hoisted to top of block scope 
+- function can be named or anonymous 
+
+```
+# Named function
+function add(x,y) {
+    return x + y;
+};
+
+# Anonymous function
+function (x) {
+    console.log(x);
+};
+```
+
+Note: Read up on [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), and [super calls](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 
