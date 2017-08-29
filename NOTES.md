@@ -183,3 +183,7 @@ console.log(COLORS.RED);            // #f00
 console.log(COLORS.GREEN);          // #0f0
 ```
 
+### PROTOTYPES
+- Instances share state with prototype
+- Properties can exist on prototypes or instances
+- Use ```hasOwnProperty``` to determin if the property belongs to Instance / Prototype
