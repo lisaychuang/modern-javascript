@@ -98,6 +98,51 @@ printUser.apply(user, ['Welcome!']);        // Mike(20): Welcome!
 
 Note: Read up on [.bind() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) and [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
 
+#### ARROW FUNCTIONS
+
+- ES2015 new shorthand for function, [MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- Can be written in one-line, no {} needed to define a block, and implies return of expression
+- Passes along *lexical scope* to the function as defined
+- Idea borrowed from functional programming!
+
+```
+EXAMPLE:
+
+User.prototype = {
+    posts() {
+        //Creating a filter, where post user is current user
+
+        let f = (p) => p.userId === this.id;  
+        return POSTS.filter(f);
+    }
+};
+```
+
+#### HIGHER ORDER FUNCTIONS
+- A *higher order function* must meet at least 1 of the following conditions:
+    1. Return a function
+    2. Take a function as an argument
+- HOF preserve the scope as they are defined, including arguments
+- Examples: ```.map(), .reduce(), .filter()```
+
+NOTE: Read this article [A dirt simple introduction to higher order functions in JavaScript.](https://medium.com/humans-create-software/a-dirt-simple-introduction-to-higher-order-functions-in-javascript-b33bf9e19056)
+
+#### RECURSION
+- ES2015 feature:  functions that invoke themselves
+- Tail-call optimization: ensuer that the last action in a function ia a *pure invocation of itself* - same overhead as a ```For Loop``` algorithm
+- Don't iterate over 50x!
+
+```
+EXAMPLE:
+
+function factorial(x, soFar = 1) {
+    if (x === 0) return soFar;
+    return factorial(x - 1, x * soFar);
+}
+console.log(factorial(5));
+```
+
+NOTE: Read this article [Recursion in Functional JavaScript](https://www.sitepoint.com/recursion-functional-javascript/)
 
 ### OBJECT LITERAL
 
