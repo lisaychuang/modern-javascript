@@ -36,6 +36,8 @@ favoriteFoods.fruits.push('pear');
 console.log(favoriteFoods.fruits);  // [ 'apple', 'grape', 'pear']
 ```
 
+Note: [MDN Scope cheatsheet](https://developer.mozilla.org/en-US/docs/Archive/Web/Scope_Cheatsheet)
+
 ### FUNCTION DECLARATIONS
 
 - Functions are hoisted to top of block scope 
@@ -54,6 +56,48 @@ function (x) {
 ```
 
 Note: Read up on [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+- Good practice: always use named functions to make debugging easier!
+- You can invoke a function just with (), e.g.
+
+```
+EXAMPLE:
+function add(a, b) {
+    return a + b;
+};
+
+add(3,4)  // 7
+```
+
+- You can also invoke a function using ```.call()```, where the 1st argument passed becomes the *lexical scope*, which becomes ```this``` within function scope
+
+```
+EXAMPLE:
+
+function printUser(message) {
+    console.log(`${this.name}(${this.id}): ${message}`);
+};
+
+let user = {id: 12, name: 'Mike'};          // user == lexical scope
+
+printUser.call(user, 'Welcome!');           // Mike(12): Welcome!
+```
+
+- You can also invoke a function using ```.apply()```, this is similar to ```.call()``` except that arguments are passed as an *array*
+
+```
+EXAMPLE:
+function printUser(message) {
+    console.log(`${this.name}(${this.id}): ${message}`);
+};
+
+let user = {id: 20, name: 'Mike'};
+
+printUser.apply(user, ['Welcome!']);        // Mike(20): Welcome!
+```
+
+Note: Read up on [.bind() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) and [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)
+
 
 ### OBJECT LITERAL
 
@@ -187,3 +231,4 @@ console.log(COLORS.GREEN);          // #0f0
 - Instances share state with prototype
 - Properties can exist on prototypes or instances
 - Use ```hasOwnProperty``` to determin if the property belongs to Instance / Prototype
+
