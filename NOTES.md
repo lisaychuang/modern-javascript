@@ -118,3 +118,68 @@ Note: Read up on [Rest/Spread properties](https://github.com/tc39/proposal-objec
 *Both accessor * data descriptor*
 - configurable (boolean option)
 - enumerable (boolean option)
+
+### MODULES
+
+- We can break JS file into many files, also referred to as modules
+- Modules can have 1 or mroe *named exports*, which can be imported into other files
+- Named exports can be "renamed" within the new file, via the ```as``` keyword
+
+```
+Example:
+
+// my-module.js
+
+const MY_CONSTANT = 42;
+
+export function namedThing() {
+    return MY_CONSTANT;
+}
+
+// index.js
+
+import { namedThing } from './my-module';
+
+console.log(namedThing());          // 42
+```
+
+- Modules can have 1 *default export*
+- When importing the default export, we don't need to use {}
+
+```
+EXAMPLE:
+// counter.js
+
+export default {
+    _count: 0,
+    next() {
+        return this._count!+;
+    }
+}
+
+// index.js
+
+import counter from './counter';
+
+console.log(counter.next());        //0
+console.log(counter.next());        //1
+```
+
+- You can export all variables / functions in a single .js file with *Namespace exports*
+- We must ```alias``` this export using the ```as``` keyword
+
+```
+EXAMPLE:
+
+// colors.js
+export const RED = '#f00';
+export const GREEN = '#0f0';
+export const BLUE = '#00f';
+
+// index.js
+
+import * as COLORS from './colors';
+console.log(COLORS.RED);            // #f00
+console.log(COLORS.GREEN);          // #0f0
+```
+
