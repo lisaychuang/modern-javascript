@@ -277,3 +277,39 @@ console.log(COLORS.GREEN);          // #0f0
 - Properties can exist on prototypes or instances
 - Use ```hasOwnProperty``` to determin if the property belongs to Instance / Prototype
 
+### ARRAYS
+- Use spread operator ```...``` to pass an array as multiple arguments
+
+```
+EXAMPLE:
+
+let movie = ['Star Wars', 'A New Hope'];
+series = [...movie, 1977];              // ['Star Wars', 'A New Hope', 1977]
+
+function printMovie(series, title, yr) {
+    console.log(`${series.toUpperCase()}: ${title} (${yr})`);
+}
+
+printMovie(...series);                  // STAR WARS: A New Hope (1977)
+```
+
+- Use rest operator 
+- Modify array with ```.push(), .pop(), .unshift(), .shift(), .splice(), .slice()```
+- Inclusion check with ```.indexOf()```
+- Check if all items in array meets defined condition with ```.every()```
+- Check if any items in array meets defined condition with ```.some()```
+
+#### ARRAY.REDUCE 
+- Iteratively loops through an array, returning 1 value ```.reduce()```
+- First argument: a callback function, returning an accumulator value
+- Second argument: initial value of an accumulator
+- User ```.reduceRight()``` to iterate from right to left
+```
+EXAMPLE: 
+let sum =
+    [1, 2, 3].reduce((acc, item) => {
+    return acc + item;
+    }, 0);
+
+console.log(sum);           /// 6
+```
